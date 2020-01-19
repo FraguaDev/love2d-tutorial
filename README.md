@@ -1,5 +1,5 @@
-# LÖVE Tutorial
-A simple repository with some basics and explanations to get started using [LÖVE](https://love2d.org/)
+# Fragua LÖVE Tutorial
+A simple repository with some basics and explanations to get started using [LÖVE](https://love2d.org/) from [Fragua](https://www.fragua.com.ar)
 
 This is currently a Work In Progress. More examples and code will be added in the near future.
 
