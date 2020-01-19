@@ -1,5 +1,7 @@
 # LÖVE Tutorial
-A simple repository with some basics and explanations to get started using [LÖVE]()
+A simple repository with some basics and explanations to get started using [LÖVE](https://love2d.org/)
+
+This is currently a Work In Progress. More examples and code will be added in the near future.
 
 ## Getting LUA with LÖVE
 
