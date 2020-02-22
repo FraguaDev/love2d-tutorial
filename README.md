@@ -3,6 +3,14 @@ A simple repository with some basics and explanations to get started using [LÖV
 
 This is currently a Work In Progress. More examples and code will be added in the near future.
 
+## Index
+
+1. [Getting Lua With LÖVE](#getting-lua-with-lve)
+2. [Preparing](#preparing)
+3. [Some Lua Basics](#some-lua-basics)
+4. [Project Dependencies](#project-dependencies)
+5. [What's next](#what-next)
+
 ## Getting LUA with LÖVE
 
 ### Installing lua
@@ -18,6 +26,8 @@ You will have to manually add love to your terminal environment.
 We suggest installing from brew, APT, pacman or any package manager if available.
 
 LÖVE is a LUA interpreter so you will be executing your scripts with that. love application receive a path as parameter. This path is your project folder, lua will search main.lua as its starting point.
+
+[Back to top](#fragua-lve-tutorial)
 
 ## Preparing
 
@@ -52,6 +62,8 @@ Just add a new Lua Application to your RUN/DEBUG configurations. There, use love
 
 There is an IDE made specifically for LUA: https://studio.zerobrane.com/support it comes bundled with interpreters for debugging.
 
+[Back to top](#fragua-lve-tutorial)
+
 ## Some Lua basics
 
 ### Classes
@@ -70,6 +82,20 @@ local Test = Object:extend()
 return Test
 ``` 
 
-## What next?
+[Back to top](#fragua-lve-tutorial)
 
-Use this repository to inspect a bit more and see a small game in action. Read this nice tutorial in reddit: https://www.reddit.com/r/gamedev/comments/67frk2/tutorial_on_making_a_complete_game_with_lua_and/ There are some differences between that tutorial and current LÖVE state. But it suffices to explain a lot. 
+## Project dependencies
+
+All dependencies are included in 'vendor' folder.
+
+- [Classic](https://github.com/rxi/classic)
+- [Input](https://github.com/adnzzzzZ/boipushy)
+- [Hump](https://hump.readthedocs.io/en/latest/)
+
+[Back to top](#fragua-lve-tutorial)
+
+## What's next?
+
+Use this repository to inspect a bit more and see a small game in action. Read this nice tutorial in reddit: https://www.reddit.com/r/gamedev/comments/67frk2/tutorial_on_making_a_complete_game_with_lua_and/ There are some differences between that tutorial and current LÖVE state. But it suffices to explain a lot.
+
+[Back to top](#fragua-lve-tutorial) 
