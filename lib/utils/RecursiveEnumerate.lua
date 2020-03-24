@@ -1,4 +1,4 @@
-local RecursiveEnumerate = Class:extend()
+local RecursiveEnumerate = Object:extend()
 
 function RecursiveEnumerate:enumerate(folder, file_list)
     local items = love.filesystem.getDirectoryItems(folder)

@@ -1,4 +1,4 @@
-local EnhancedTimer = Class:extend()
+local EnhancedTimer = Object:extend()
 local Timer = require 'vendor/hump/timer'
 
 function EnhancedTimer:new()

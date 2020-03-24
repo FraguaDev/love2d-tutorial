@@ -98,4 +98,14 @@ All dependencies are included in 'vendor' folder.
 
 Use this repository to inspect a bit more and see a small game in action. Read this nice tutorial in reddit: https://www.reddit.com/r/gamedev/comments/67frk2/tutorial_on_making_a_complete_game_with_lua_and/ There are some differences between that tutorial and current LÖVE state. But it suffices to explain a lot.
 
-[Back to top](#fragua-lve-tutorial) 
+[Back to top](#fragua-lve-tutorial)
+
+## Project Structure
+
+This project is packaged by features. There is a main cross-feature with base classes and implementations of this main feature with construction classes.
+
+The main package inside lib is engine where main classes with common behaviour relative to the game engine, are defined. Then we have an area packages where all areas will be constructed, an object packages where all game objects will be defined and so on.
+
+Outside lib package we have PietroEngine inside modules. This is our "orchestrator" class which loads our base classes and our construction classes. There, we load our classes from more abstract to more concrete.
+
+Finally, main.lua will load meta classes (such as outside cross-dependencies like Classical Lua) and start the game.

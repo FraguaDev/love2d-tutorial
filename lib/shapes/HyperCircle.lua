@@ -1,3 +1,5 @@
+local Circle = require 'lib/shapes/Circle'
+
 local HyperCircle = Circle:extend()
 
 function HyperCircle:new(x, y, radius, lineWidth, outerRadius)

@@ -3,80 +3,73 @@
 --- Created by mdepietro.
 --- DateTime: 05/01/2020 14:54
 ---
-Class = require 'vendor/classic/classic'
-Input = require 'vendor/input/input'
-EnhancedTimer = require 'vendor/enhanced_timer/EnhancedTimer'
-Circle = require 'lib/models/Circle'
-HyperCircle = require 'lib/models/HyperCircle'
-
-sum = 0
+--- Global Dependencies
+Object = require 'vendor.classic.classic'
+Input = require 'vendor.input.input'
+Timer = require 'vendor.enhanced_timer.EnhancedTimer'
+require 'lib.utils.UUID'
 
 function love.load()
-    hyperCircle = HyperCircle(400, 300, 50, 10, 120)
+    local PietroEngine = require 'modules/PietroEngine'
+    rooms = {}
     input = Input()
-    timer = EnhancedTimer()
-    input:bind('mouse1', function()
-        print(love.math.random())
-    end) -- Binds mouse1 input to declared function
-    input:bind('s', 'add') -- Binds S to add trigger
-    input:bind('+', 'add') -- Multiple keys can be bound to one trigger
-    input:bind('s', 'pato') -- One input can have multiple triggers
-    -- randomNumberPrinter()
-    timerExerciseLoad()
-end
-
-function randomNumberPrinter()
-    for i = 1, 10 do
-        timer:after('4', 0.5 * i, 1, function()
-            print(love.math.random())
-        end)
-    end
-end
-
-function add()
-    sum = sum + 0.25
-    print(sum)
-end
-
-function pato()
-    print('cuack')
+    current_room = nil
+    local engine = PietroEngine()
+    engine:load()
+    gotoRoom('AInitRoom', 'Primer Room')
+    input:bind('f1', function() gotoRoom('BSquareRoom', 'Segundo Room') end)
 end
 
 function love.update(dt)
-    -- hyperCircle:update(dt)
-    if input:pressed('add') then
-        add()
-    end -- Check add trigger and executes add() function
-    if input:pressed('pato') then
-        pato()
+    if current_room then
+        current_room:update(dt)
     end
-    timer_exercise_update(dt)
 end
 
 function love.draw()
-    -- hyperCircle:draw()
-    timer_exercise_draw()
+    if current_room then
+        current_room:draw()
+    end
 end
 
-function timerExerciseLoad()
-    rect_1 = { x = 400, y = 300, w = 50, h = 200 }
-    rect_2 = { x = 400, y = 300, w = 200, h = 50 }
-    timer:tween('1', 1, rect_1, { w = 0 }, 'in-out-cubic', function()
-        timer:tween('1', 1, rect_2, { h = 0 }, 'in-out-cubic', function()
-            timer:tween('2', 1, rect_1, { w = 50 }, 'in-out-cubic', function()
-                timer:tween('2', 1, rect_2, { h = 50 }, 'in-out-cubic')
-            end)
-        end)
-    end)
+function addRoom(room_type, room_name, ...)
+    local room = _G[room_type](room_name, ...)
+    rooms[room_name] = room
+    return room
 end
 
-function timer_exercise_update(dt)
-    timer:update(dt)
+function gotoRoom(room_type, room_name, ...)
+    print(room_name)
+    if current_room and rooms[room_name] then
+        if current_room.deactivate then
+            current_room:deactivate()
+        end
+        current_room = rooms[room_name]
+        if current_room.activate then
+            current_room:activate()
+        end
+    else
+        current_room = addRoom(room_type, room_name, ...)
+    end
 end
 
-function timer_exercise_draw()
-    love.graphics.rectangle('fill', rect_1.x - rect_1.w / 2, rect_1.y - rect_1.h / 2, rect_1.w, rect_1.h)
-    love.graphics.rectangle('fill', rect_2.x - rect_2.w / 2, rect_2.y - rect_2.h / 2, rect_2.w, rect_2.h)
+function requireFiles(files)
+    for _, file in ipairs(files) do
+        local file = file:sub(1, -5)
+        require(file)
+    end
+end
+
+function recursiveEnumerate(folder, file_list)
+    local items = love.filesystem.getDirectoryItems(folder)
+    for _, item in ipairs(items) do
+        local file = folder .. '/' .. item
+        if love.filesystem.isFile(file) then
+            table.insert(file_list, file)
+        elseif love.filesystem.isDirectory(file) then
+            recursiveEnumerate(file, file_list)
+        end
+    end
 end
 
 function love.run()
