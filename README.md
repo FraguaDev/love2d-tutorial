@@ -84,6 +84,17 @@ return Test
 
 [Back to top](#fragua-lve-tutorial)
 
+## Game Logic
+
+### Area
+
+Area carries game logic. It contains objects and updates its objects frame by frame. 
+
+### Room
+
+Room constructs areas adding objects to Area's ObjectsList.
+
+
 ## Project dependencies
 
 All dependencies are included in 'vendor' folder.
