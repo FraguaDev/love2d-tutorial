@@ -17,7 +17,9 @@ function love.load()
     local engine = PietroEngine()
     engine:load()
     gotoRoom('AInitRoom', 'Primer Room')
-    input:bind('f1', function() gotoRoom('BSquareRoom', 'Segundo Room') end)
+    input:bind('f1', function()
+        gotoRoom('BSquareRoom', 'Segundo Room')
+    end)
 end
 
 function love.update(dt)
@@ -64,7 +66,7 @@ function recursiveEnumerate(folder, file_list)
     local items = love.filesystem.getDirectoryItems(folder)
     for _, item in ipairs(items) do
         local file = folder .. '/' .. item
-        if love.filesystem.isFile(file) then
+        if love.filesystem.getInfo(file) then
             table.insert(file_list, file)
         elseif love.filesystem.isDirectory(file) then
             recursiveEnumerate(file, file_list)
