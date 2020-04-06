@@ -6,11 +6,11 @@
 
 Object = require 'vendor/classic/classic'
 
-AInitRoom = Object:extend()
+AInitRoom = Room:extend()
 
 function AInitRoom:new()
-    self.area = Area()
-    self.area:addGameObject('GameCircle',500,500, {radius = 200})
+    AInitRoom.super:new()
+  --  self.area:addGameObject('GameCircle', 200, 200, { width = 200 })
 end
 
 function AInitRoom:update(dt)

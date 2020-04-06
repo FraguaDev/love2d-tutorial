@@ -4,9 +4,11 @@
 --- DateTime: 23/03/2020 19:49
 ---
 
-local PietroEngine = Object:extend()
+local PietroModule = Object:extend()
 
-function PietroEngine:load()
+require 'lib.utils.GameMath'
+
+function PietroModule:load()
     loadFolder('lib/engine')
     loadFolder('lib/shapes')
     loadFolder('lib/areas')
@@ -20,4 +22,4 @@ function loadFolder(path)
     requireFiles(files)
 end
 
-return PietroEngine
+return PietroModule

@@ -10,11 +10,11 @@ Timer = require 'vendor.enhanced_timer.EnhancedTimer'
 require 'lib.utils.UUID'
 
 function love.load()
-    local PietroEngine = require 'modules/PietroEngine'
+    local PietroModule = require 'modules.PietroModule'
     rooms = {}
     input = Input()
     current_room = nil
-    local engine = PietroEngine()
+    local engine = PietroModule()
     engine:load()
     gotoRoom('AInitRoom', 'Primer Room')
     input:bind('f1', function()
